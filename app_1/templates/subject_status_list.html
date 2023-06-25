@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block subject_status_list %}
+  <style>
+    h1 {
+      color: #248f28; 
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+  </style>
+
+  <h1>Students with Status: {{ status }}</h1>
+
+  <ul>
+    {% for student in students %}
+      <li>{{ student.first_name }} {{ student.last_name }} ({{ student.username }})</li>
+    {% empty %}
+      <li style="list-style-type: none;">No students with this status.</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block edit_professor %}
+  <style>
+    input[type="submit"].submit-button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    
+    h1 {
+      color: #2f9132; 
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+  </style>
+
+  <h1>Edit Professor</h1>
+
+  <form method="post">
+    {{ form.as_p }}
+    <input type="submit" value="Edit" class="submit-button">
+    {% csrf_token %}
+  </form>
+{% endblock %}

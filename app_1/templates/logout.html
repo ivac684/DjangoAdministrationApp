@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block logout %}
+  <p>You have logged out!</p>
+  {% if user.is_authenticated %}
+    <script>
+      window.location.href = "{% url 'login' %}";
+    </script>
+  {% endif %}
+{% endblock %}

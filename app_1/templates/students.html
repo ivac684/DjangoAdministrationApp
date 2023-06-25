@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block students %}
+  <style>
+    h1 {
+      color: #248f28;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    a {
+      color: #248f28;
+      text-decoration: none;
+      margin-right: 10px;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+
+  <h1>Students</h1>
+  <a href="{% url 'add_student' %}">Add</a><br><br>
+  {% for student in students %}
+    <div>
+      <span>{{ student.username }}</span>
+      <a href="{% url 'edit_student' student.id %}">Edit</a><br>
+      <a href="{% url 'upisni_list' student.id %}">Upisni list</a><br><br>
+    </div>
+  {% endfor %}
+{% endblock %}

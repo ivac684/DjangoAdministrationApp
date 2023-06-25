@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block edit_subject_status %}
+  <style>
+    h1 {
+      color: #248f28;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    form {
+      margin-bottom: 20px;
+    }
+
+    .submit-button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  </style>
+
+  <h1>Edit Subject Status</h1>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="submit-button">Save</button>
+  </form>
+{% endblock %}

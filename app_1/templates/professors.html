@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block professors %}
+  <style>
+    h1 {
+      color: #248f28;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    a {
+      color: #248f28;
+      text-decoration: none;
+      margin-right: 10px;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+
+  <h1>Professors</h1>
+  <a href="{% url 'add_professor' %}">Add </a><br><br>
+  {% for professor in professors %}
+    <div>
+      <span>{{ professor.username }}</span>
+      <a href="{% url 'edit_professor' professor.id %}">Edit</a><br>
+      <a href="{% url 'assign_subject_professor' professor_id=professor.id %}">Assign subject</a><br><br>
+    </div>
+  {% endfor %}
+{% endblock %}

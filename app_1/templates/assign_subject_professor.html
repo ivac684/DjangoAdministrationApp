@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block assign_subject_professor %}
+  <style>
+    button[type="submit"] {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    
+    h1 {
+      color: #248f28; 
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+  </style>
+
+  <h1>Assign Subject to Professor</h1>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save</button>
+  </form>
+{% endblock %}

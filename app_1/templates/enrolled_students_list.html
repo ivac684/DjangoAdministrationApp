@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block enrolled_students_list %}
+  <style>
+    h1 {
+      color: #248f28;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    ul {
+      margin-bottom: 20px;
+    }
+
+    li {
+      color: #306e32;
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+
+    a {
+      color: #979711;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    .column-container {
+      display: flex; 
+    }
+
+    .column {
+      flex: 1;
+      background-color: #ffffb3;
+      padding: 10px;
+      margin-right: 20px;
+    }
+  </style>
+
+  <div class="column-container">
+    <div class="column" style="height: 60%;">
+      <h1>Enrolled Students List - {{ subject.name }}</h1>
+      <ul>
+        {% for student in enrolled_students %}
+          <li>{{ student.first_name }} {{ student.last_name }} ({{ student.username }})</li>
+          <a href="{% url 'edit_subject_status' student_id=student.id subject_id=subject.id %}" style="color: #979711;">Edit subject</a> <br><br>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <div class="column" style="height: 60%; box-sizing: border-box;">
+      <h2 style="color: #248f28;">View Students by Status:</h2>
+      <ul style="list-style: none; padding-left: 0;">
+        <li><a href="{% url 'subject_status_list' status='upis' %}" style="color: #979711;">Upis</a></li>
+        <li><a href="{% url 'subject_status_list' status='da' %}" style="color: #979711;">Polozen</a></li>
+        <li><a href="{% url 'subject_status_list' status='ne' %}" style="color: #979711;">Izgubio potpis</a></li>
+        <a href="{% url 'view_student_status' %}">Redovni studenti</a> 
+        <a href="{% url 'view_student_status_ne' %}">Izvanredni studenti</a>
+      </ul>
+    </div>
+  </div>
+{% endblock %}
+

@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block subject_list %}
+  <style>
+    h1 {
+      color: #248f28;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    h4 {
+      display: inline;
+    }
+
+    .subject-container {
+      display: flex;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .subject-item {
+      width: 25%; 
+    }
+
+    .edit-link {
+      display: inline;
+      margin-left: 10px;
+      color: #248f28; 
+      text-decoration: none;
+    }
+
+    .enrolled-students-button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .add-link {
+      font-size: 17px;
+      color: #e2cc4f;
+      text-decoration: none;
+    }
+  </style>
+
+  <h1>Subjects <a href="{% url 'add_subject' %}" class="add-link">Add</a></h1>
+
+  <div class="subject-container">
+    {% for subject in subjects %}
+      <div class="subject-item">
+        <h4>{{ subject.name }}</h4>
+        <a href="{% url 'edit_subject' subject.id %}" class="edit-link">Edit</a> <br> 
+        {{ subject.kod }} <br>
+        {{ subject.program }}<br>
+        ECTS: {{ subject.ects }}<br>
+        Semestar - redovni: {{ subject.sem_red }}<br>
+        Semestar - izvanredni: {{ subject.sem_izv }}<br>
+        Izborni predmet {{ subject.get_izborni_display }}<br> 
+        Nositelj {{ subject.nositelj }}<br> <br>
+          <form method="post" action="{% url 'enrolled_students_list' subject.id %}">
+            {% csrf_token %}
+            <button type="submit" class="enrolled-students-button">See Enrolled Students</button>
+          </form>
+        
+        <br>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}

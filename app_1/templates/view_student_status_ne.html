@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+
+{% block view_student_status_ne %}
+  {{ student_count }}
+  {% for student in students %}
+  <li>{{ student.first_name }} {{ student.last_name }} ({{ student.username }})</li>
+  {% endfor %}
+{% endblock %}

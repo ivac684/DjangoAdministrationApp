@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block add_subject %}
+  <style>
+    .add-button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 8px 16px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  </style>
+
+  <form method="POST">
+    {{ form.as_p }}
+    <input type="submit" value="Add subject" class="add-button">
+    {% csrf_token %}
+  </form>
+{% endblock %}

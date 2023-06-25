@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block professor_subjects %}
+  <style>
+    table {
+      margin-bottom: 20px;
+      table-layout: fixed;
+      width: 50%;
+    }
+
+    td {
+      padding: 10px;
+      width: 50%;
+    }
+
+    .column1 {
+      background-color: #FFFFCC;
+    }
+
+    .column2 {
+      background-color: #FFFF99;
+    }
+
+    a {
+      color: #306e32;
+      text-decoration: none;
+      font-size: 16px;
+    }
+  </style>
+
+  <table>
+    <tr>
+      {% for subject in subjects %}
+        <td class="column1">{{ subject.name }}</td>
+        {% if forloop.counter|divisibleby:2 %}
+          </tr><tr>
+        {% endif %}
+      {% endfor %}
+    </tr>
+  </table>
+
+  <table>
+    <tr>
+      {% for subject in subjects %}
+        <td class="column2"><a href="{% url 'enrolled_students_list' subject.id %}">See Enrolled Students</a></td>
+        {% if forloop.counter|divisibleby:2 %}
+          </tr><tr>
+        {% endif %}
+      {% endfor %}
+    </tr>
+  </table>
+{% endblock %}

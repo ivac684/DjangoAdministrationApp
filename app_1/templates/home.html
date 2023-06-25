@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block home %}
+  <style>
+    a {
+      color: #306e32; 
+      text-decoration: none; 
+      font-size: 20px; 
+    }
+  </style>
+
+  {% if user.role == 'admin' %}
+    <a href="{% url 'subject_list' %}">Subject List</a> <br>
+    <a href="{% url 'professors' %}">Professors</a> <br>
+    <a href="{% url 'students' %}">Students</a> <br>
+    <a href="{% url 'logout' %}">Logout</a>
+    
+  {% elif user.role == 'stu' %}
+    <a href="{% url 'upisni_list' user.id %}">Upisni list</a> <br><br>
+    <a href="{% url 'logout' %}">Logout</a>
+
+  {% elif user.role == 'prof' %}
+    <a href="{% url 'professor_subjects' %}">My subjects</a> <br>
+    <a href="{% url 'logout' %}">Logout</a>
+  {% endif %}
+{% endblock %}
